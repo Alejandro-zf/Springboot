@@ -1,5 +1,8 @@
 package com.sena.clase2.mapper;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 import com.sena.clase2.dto.UsuarioDto;
 import com.sena.clase2.models.Usuario;
@@ -14,10 +17,10 @@ public class UsuarioMapperImplement implements UsuarioMapper{
     }
 
     Usuario usuario = new Usuario();
-    usuario.setId_usuario(usuarioDto.getId_usuario());
-    usuario.setNombre(usuarioDto.getNombre());
-    usuario.setApellido(usuarioDto.getApellido());
-    usuario.setCiudad(usuarioDto.getCiudad());
+    usuario.setId_usuario(usuarioDto.getId());
+    usuario.setNombre(usuarioDto.getNom());
+    usuario.setApellido(usuarioDto.getApe());
+    usuario.setCiudad(usuarioDto.getCiu());
     return usuario;
 }
 
@@ -27,11 +30,24 @@ public class UsuarioMapperImplement implements UsuarioMapper{
             return null;
         } 
         UsuarioDto usuarioDto = new UsuarioDto();
-        usuarioDto.setId_usuario(usuario.getId_usuario());
-        usuarioDto.setNombre(usuario.getNombre());
-        usuarioDto.setApellido(usuario.getApellido());
-        usuarioDto.setCiudad(usuario.getCiudad());
+        usuarioDto.setId(usuario.getId_usuario());
+        usuarioDto.setNom(usuario.getNombre());
+        usuarioDto.setApe(usuario.getApellido());
+        usuarioDto.setCiu(usuario.getCiudad());
         return usuarioDto; 
+     }
+
+     @Override
+     public List<UsuarioDto> toUsuarioDtoList(List<Usuario> usuarios){
+        if(usuarios == null || usuarios.isEmpty()){
+            return List.of();
+        }
+
+        List<UsuarioDto> usuarioDtos = new ArrayList<UsuarioDto>(usuarios.size());
+        for(Usuario usuario: usuarios){
+        usuarioDtos.add(toUsuarioDto(usuario));
+        }
+        return usuarioDtos;
      }
 }
 

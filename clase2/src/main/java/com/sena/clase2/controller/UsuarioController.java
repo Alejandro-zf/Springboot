@@ -18,6 +18,8 @@ import com.sena.clase2.reposirtoryes.UsuarioRepositorie;
 import com.sena.clase2.services.UsuarioServices;
 
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 
@@ -26,7 +28,10 @@ public class UsuarioController {
     
     @Autowired
     private UsuarioRepositorie userRepo;
-    
+
+    @Autowired
+    private UsuarioServices usersServices;
+        
     @GetMapping ("/usa")
     public String usuarios (){
         return new String("Conectando desde el controlador usuarios");
@@ -68,13 +73,25 @@ public class UsuarioController {
     }
 
     //Metodos mediante arquitecturas de capas
-
-    @Autowired
-    private UsuarioServices usersServices;
-
     @GetMapping("/userser/{id}")
     public ResponseEntity<UsuarioDto> getUsuario(@PathVariable Integer id) {
         return new ResponseEntity<>(usersServices.getUsuario(id),HttpStatus.OK);
     }
 
+
+@PostMapping("/usuario")
+public ResponseEntity <UsuarioDto> saveUsuario(@RequestBody UsuarioDto usuarioDto){
+    return new ResponseEntity<>(usersServices.saveUsuario(usuarioDto),
+    HttpStatus.CREATED);    
+    }
+
+    @GetMapping("/userser")
+    public ResponseEntity<List<UsuarioDto>> getUsuarios() {
+        return new ResponseEntity<>(usersServices.getUsuarios(),HttpStatus.OK);
+    }
+    
+    @DeleteMapping("/useres/{id}")
+    public ResponseEntity<UsuarioDto> deleteUsuario(@PathVariable Integer id){
+            return new  ResponseEntity<>(usersServices.deleteUsuario(id), HttpStatus.OK);
+    }
 }
