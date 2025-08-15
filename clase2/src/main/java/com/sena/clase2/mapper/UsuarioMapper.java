@@ -12,5 +12,6 @@ public interface UsuarioMapper {
     UsuarioDto toUsuarioDto (Usuario usuario);
 
     List<UsuarioDto> toUsuarioDtoList(List<Usuario> usuarios);
-        
+    
+    void userupdate(Usuario usuario, UsuarioDto usuarioDto);
 }

@@ -94,4 +94,9 @@ public ResponseEntity <UsuarioDto> saveUsuario(@RequestBody UsuarioDto usuarioDt
     public ResponseEntity<UsuarioDto> deleteUsuario(@PathVariable Integer id){
             return new  ResponseEntity<>(usersServices.deleteUsuario(id), HttpStatus.OK);
     }
+
+    @PutMapping("/usuarix/{usuarioid}")
+    public ResponseEntity<UsuarioDto> updateUser(@PathVariable Integer usuarioid, @RequestBody UsuarioDto usuarioDto) {
+        return new ResponseEntity<>(usersServices.updateUser(usuarioid,usuarioDto),HttpStatus.OK);    
+    }
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 import com.sena.clase2.dto.UsuarioDto;
 import com.sena.clase2.mapper.UsuarioMapper;
 import com.sena.clase2.models.Usuario;
@@ -44,4 +45,10 @@ import com.sena.clase2.reposirtoryes.UsuarioRepositorie;
         userRepo.delete(usuario);
         return userMapper.toUsuarioDto(usuario);
     }
+    @Override
+        public UsuarioDto updateUser (Integer usuarioid, UsuarioDto usuarioDto){
+        Usuario usuario= userRepo.findById(usuarioid).get();
+        return userMapper.toUsuarioDto(userRepo.save(usuario));
+    }
+
 }

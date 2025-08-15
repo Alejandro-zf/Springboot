@@ -3,10 +3,14 @@ package com.sena.clase2.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.sena.clase2.dto.ProductoDto;
 import com.sena.clase2.models.Productos;
 import com.sena.clase2.reposirtoryes.ProductoRepositorie;
+import com.sena.clase2.services.ProductosServices;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +26,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 public class ProductoController {
     @Autowired
     private ProductoRepositorie produRepo;
+
+    @Autowired
+    private ProductosServices productosServices;
 
     @GetMapping("/Produ")
     public String productos () {
@@ -60,4 +67,23 @@ public class ProductoController {
         return "Datos del producto han sido actualizados";
 
     }
+
+
+
+//Metodos mediante arquitectura de capas
+
+@GetMapping("productors/{id}")
+public ResponseEntity<ProductoDto> getProductos(@PathVariable Integer id){
+    return new ResponseEntity<>(productosServices.getProducto(id),HttpStatus.OK);
 }
+
+@PostMapping("/Producto")
+public String postMethodName(@RequestBody String entity) {
+    //TODO: process POST request
+    
+    return entity;
+}
+
+}
+
+
