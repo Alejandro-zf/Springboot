@@ -22,8 +22,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 
 
 
+
 @RestController
 public class ProductoController {
+
     @Autowired
     private ProductoRepositorie produRepo;
 
@@ -72,18 +74,33 @@ public class ProductoController {
 
 //Metodos mediante arquitectura de capas
 
-@GetMapping("productors/{id}")
+@GetMapping("produuu/{id}")
 public ResponseEntity<ProductoDto> getProductos(@PathVariable Integer id){
     return new ResponseEntity<>(productosServices.getProducto(id),HttpStatus.OK);
 }
 
 @PostMapping("/Producto")
-public String postMethodName(@RequestBody String entity) {
-    //TODO: process POST request
-    
-    return entity;
+public ResponseEntity <ProductoDto> saveProducto(@RequestBody ProductoDto productoDto){
+    return new ResponseEntity<>(productosServices.saveProducto(productoDto),
+    HttpStatus.CREATED);
+}
+
+@GetMapping("Produc")
+public ResponseEntity<List<ProductoDto>> getProductos(){
+    return new ResponseEntity<>(productosServices.getProductos(),HttpStatus.OK);
+}
+
+@DeleteMapping("/productos/{id}")
+public ResponseEntity<ProductoDto> deleteProducto(@PathVariable Integer id){
+    return new ResponseEntity<>(productosServices.deleteProducto(id), HttpStatus.OK);
+}
+
+@PutMapping("/productoo/{id}")
+public ResponseEntity<ProductoDto> updateProducto(@PathVariable Integer id, @RequestBody ProductoDto productoDto) {
+    return new ResponseEntity<>(productosServices.updateProducto(id, productoDto), HttpStatus.OK);
 }
 
 }
+
 
 

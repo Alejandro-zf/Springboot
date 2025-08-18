@@ -18,7 +18,6 @@ import com.sena.clase2.reposirtoryes.UsuarioRepositorie;
 import com.sena.clase2.services.UsuarioServices;
 
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 
@@ -48,8 +47,8 @@ public class UsuarioController {
 }
     @PostMapping("/agregarusuarios")
     public String crearusuario(@RequestBody Usuario usuario) {
-         userRepo.save(usuario);
-         return "El usuario ha sido creado";
+        userRepo.save(usuario);
+        return "El usuario ha sido creado";
     }
 
     @DeleteMapping("/users/{id}")
@@ -97,6 +96,6 @@ public ResponseEntity <UsuarioDto> saveUsuario(@RequestBody UsuarioDto usuarioDt
 
     @PutMapping("/usuarix/{usuarioid}")
     public ResponseEntity<UsuarioDto> updateUser(@PathVariable Integer usuarioid, @RequestBody UsuarioDto usuarioDto) {
-        return new ResponseEntity<>(usersServices.updateUser(usuarioid,usuarioDto),HttpStatus.OK);    
+        return new ResponseEntity<>(usersServices.updateUser(usuarioid,usuarioDto),HttpStatus.OK);
     }
 }

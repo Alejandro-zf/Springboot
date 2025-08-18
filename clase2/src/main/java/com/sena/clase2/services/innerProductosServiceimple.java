@@ -44,4 +44,10 @@ public class innerProductosServiceimple implements ProductosServices {
         return produMapper.toProductoDto(productos);
     }
 
+    @Override
+    public ProductoDto updateProducto(Integer productoid, ProductoDto productoDto) {
+        Productos productos= produRepo.findById(productoid).get();
+        return produMapper.toProductoDto(produRepo.save(productos));
+    }
+
 }

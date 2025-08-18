@@ -1,5 +1,6 @@
 {
     "cSpell.words": [
         "listausuarios"
-    ]
+    ],
+    "java.compile.nullAnalysis.mode": "automatic"
 }
