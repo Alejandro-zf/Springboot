@@ -69,9 +69,6 @@ public class ProductoController {
         return "Datos del producto han sido actualizados";
 
     }
-
-
-
 //Metodos mediante arquitectura de capas
 
 @GetMapping("produuu/{id}")
@@ -99,7 +96,6 @@ public ResponseEntity<ProductoDto> deleteProducto(@PathVariable Integer id){
 public ResponseEntity<ProductoDto> updateProducto(@PathVariable Integer id, @RequestBody ProductoDto productoDto) {
     return new ResponseEntity<>(productosServices.updateProducto(id, productoDto), HttpStatus.OK);
 }
-
 }
 
 

@@ -1,33 +1,24 @@
 package com.sena.clase2.models;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Entity 
-@Table(name="productos")
-
-public class Productos {
+@Entity
+@Table(name="documento")
+public class Documento {
     @Id
-    @Column(name = "id_producto")
+    @Column(name = "id_documento")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id_producto;
-    private String nombre;
-    private Integer precio;
-    private String categoria;
-
-    @ManyToMany(mappedBy = "producto")
-    private Set<Usuario> usuarios = new HashSet<>();
-    }
+    private Integer id_documento;
+    private String tipo_documento;           
+}
